@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GifsService } from '../../../gifs/services/gifs.service';
 
 @Component({
   selector: 'shared-slidebar',
@@ -6,5 +7,20 @@ import { Component } from '@angular/core';
   styleUrl: './slidebar.component.css'
 })
 export class SlidebarComponent {
+
+  constructor (private gifsService: GifsService) {
+  }
+
+
+  public get tags() : string[] {
+    return this.gifsService.tagsHistory;
+  }
+
+
+
+
+  public name() {
+
+  }
 
 }
