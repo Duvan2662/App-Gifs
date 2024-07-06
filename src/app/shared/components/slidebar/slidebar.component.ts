@@ -8,6 +8,8 @@ import { GifsService } from '../../../gifs/services/gifs.service';
 })
 export class SlidebarComponent {
 
+
+
   constructor (private gifsService: GifsService) {
   }
 
@@ -16,11 +18,9 @@ export class SlidebarComponent {
     return this.gifsService.tagsHistory;
   }
 
-
-
-
-  public name() {
-
+  public searchTag = (tag: string): void => {
+    this.gifsService.searchTags(tag);
   }
+
 
 }
