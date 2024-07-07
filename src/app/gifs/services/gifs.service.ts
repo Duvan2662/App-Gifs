@@ -16,6 +16,7 @@ export class GifsService {
   private serviceUrl:   string   = 'https://api.giphy.com/v1/gifs'
 
   constructor(private http: HttpClient){
+    this.loadLocalStorage();
 
   }
 
@@ -44,6 +45,22 @@ export class GifsService {
   private saveLocalStorage(): void {
     localStorage.setItem('history', JSON.stringify(this._tagsHistory));
   }
+
+
+  private loadLocalStorage(): void {
+    if (!localStorage.getItem('history')) {
+      //si no tenemos data
+      return
+    }
+    const temporal = localStorage.getItem('history');
+    this._tagsHistory = JSON.parse(temporal!);
+    if (this._tagsHistory.length ===0) {
+      return
+    }
+    this.searchTags(this._tagsHistory[0]);
+  }
+
+
 
   public searchTags = (tag: string): void => {
 
